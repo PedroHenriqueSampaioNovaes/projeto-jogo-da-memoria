@@ -13,16 +13,40 @@
 
 <body>
 
-  <div id="gameBoard">
-    <!-- <div id="09348230" class="card" data-icon="bootstrap">
-      <div class="card_front">
-        <img src="assets/images/bootstrap.png" alt="bootstrap">
-      </div>
+  <div id="register">
+    <form id="form_register">
+      <input type="text" id="nickname" placeholder="Digite seu nickname" required>
+      <input type="email" id="email" placeholder="Digite seu email" required>
+      <input type="password" id="password" placeholder="Digite sua senha" required>
+      <button>Cadastrar</button>
+    </form>
+    <span id="error"></span>
+  </div>
 
-      <div class="card_back">
-        &lt;/&gt;
-      </div>
-    </div> -->
+  <div id="login">
+    <form id="form_login">
+      <input type="text" id="nickname_login" placeholder="Digite seu nickname" required>
+      <input type="password" id="password_login" placeholder="Digite sua senha" required>
+      <button>Entrar</button>
+    </form>
+    <span id="error"></span>
+  </div>
+
+  <div id="game">
+    <div id="user">
+      <p>Nome: <span id="name">---</span></p>
+      <span>Tempo decorrido: 00</span>
+    </div>
+    <div id="gameBoard">
+      <!-- <div id="09348230" class="card" data-icon="bootstrap">
+        <div class="card_front">
+          <img src="assets/images/bootstrap.png" alt="bootstrap">
+        </div>
+        <div class="card_back">
+          &lt;/&gt;
+        </div>
+      </div> -->
+    </div>
   </div>
 
   <div id="gameOver">

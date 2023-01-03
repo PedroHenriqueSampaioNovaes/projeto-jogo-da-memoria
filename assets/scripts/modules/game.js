@@ -20,10 +20,12 @@ export default class Game {
 
   createCardsFromTechs() {
     this.cards = [];
-  
-    this.techs.forEach((tech) => this.cards.push(this.createPairFromTech(tech)));
+
+    this.techs.forEach((tech) =>
+      this.cards.push(this.createPairFromTech(tech)),
+    );
     this.cards = this.cards.flatMap((pair) => pair);
-  
+
     this.shuffleCards();
   }
 
@@ -41,12 +43,15 @@ export default class Game {
   shuffleCards() {
     let currentIndex = this.cards.length;
     let randomIndex = 0;
-  
+
     while (currentIndex > 0) {
       randomIndex = Math.floor(Math.random() * currentIndex);
       currentIndex--;
-  
-      [this.cards[randomIndex], this.cards[currentIndex]] = [this.cards[currentIndex], this.cards[randomIndex]];
+
+      [this.cards[randomIndex], this.cards[currentIndex]] = [
+        this.cards[currentIndex],
+        this.cards[randomIndex],
+      ];
     }
   }
 
@@ -82,7 +87,7 @@ export default class Game {
     this.secondCard = null;
     this.lockMode = null;
   }
-  
+
   checkGameOver() {
     return this.cards.filter((card) => !card.flipped).length === 0;
   }
