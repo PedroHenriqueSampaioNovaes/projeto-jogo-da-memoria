@@ -1,5 +1,5 @@
-import { loginAccount } from '../firebase/auth.js';
-import { validateUser } from '../firebase/firestore.js';
+import { loginAccount } from '../../firebase/auth.js';
+import { validateUser } from '../../firebase/firestore.js';
 
 const login = document.querySelector('#nickname_login');
 const password = document.querySelector('#password_login');
@@ -28,6 +28,7 @@ async function handleSubmit(event) {
 }
 
 function addError() {
-  const spanError = document.querySelector('#login #error');
+  const spanError = document.querySelector('#form_login .error');
   spanError.innerText = 'Usuário ou senha incorretos';
+  spanError.classList.add('active');
 }

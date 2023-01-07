@@ -1,5 +1,5 @@
-import { checkUserState } from '../firebase/auth.js';
-import { getDocUser } from '../firebase/firestore.js';
+import { checkUserState } from '../../firebase/auth.js';
+import { getDocUser } from '../../firebase/firestore.js';
 
 checkUserState(getName);
 async function getName() {

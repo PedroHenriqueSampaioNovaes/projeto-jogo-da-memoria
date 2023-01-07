@@ -1,3 +1,6 @@
+import { checkUserState } from '../firebase/auth.js';
+import { updateDocValues } from '../firebase/firestore.js';
+import { attRank } from './user/ranking.js';
 import Game from './game.js';
 const game = new Game();
 
@@ -6,6 +9,9 @@ const front = 'card_front';
 const back = 'card_back';
 const flipClass = 'flip';
 
+let timerInterval = null;
+let timer = 0;
+
 startGame();
 function startGame() {
   game.createCardsFromTechs();
@@ -13,7 +19,7 @@ function startGame() {
 }
 
 function initializeCards() {
-  const gameBoard = document.querySelector('#gameBoard');
+  const gameBoard = document.querySelector('#game_board');
   gameBoard.innerHTML = '';
 
   game.cards.forEach((card) => {
@@ -59,11 +65,16 @@ function flipCard() {
         game.clearCards();
 
         if (game.checkGameOver()) {
-          const gameOver = document.querySelector('#gameOver');
-          gameOver.style.display = 'flex';
+          setTimeout(() => {
+            clearInterval(timerInterval);
+            attDataBase();
 
-          const btnRestart = document.querySelector('#restart');
-          btnRestart.addEventListener('click', restart);
+            const gameOver = document.querySelector('#game_over');
+            gameOver.style.display = 'flex';
+
+            const btnRestart = document.querySelector('#restart');
+            btnRestart.addEventListener('click', restart);
+          }, 500);
         }
       } else {
         setTimeout(() => {
@@ -80,9 +91,25 @@ function flipCard() {
 }
 
 function restart() {
+  timer = 0;
   game.clearCards();
   startGame();
 
-  const gameOver = document.querySelector('#gameOver');
+  const gameOver = document.querySelector('#game_over');
   gameOver.style.display = 'none';
+}
+
+checkUserState(initTimer);
+function initTimer() {
+  const timerView = document.querySelector('#timer');
+
+  timerInterval = setInterval(() => {
+    timer += 1;
+    timerView.innerText = timer;
+  }, 1000);
+}
+
+async function attDataBase() {
+  await updateDocValues({ counter: timer });
+  await attRank();
 }

@@ -1,0 +1,88 @@
+.account_info {
+  position: fixed;
+  top: 0;
+  left: 0;
+  background-color: rgba(0, 0, 0, 0.9);
+  width: 100%;
+  height: 100%;
+  display: none;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  color: white;
+  padding: 10px;
+  z-index: 999;
+}
+
+.account_info.show {
+  display: flex;
+}
+
+.title {
+  text-align: center;
+  font-size: 50px;
+}
+
+.form {
+  width: 100%;
+  margin-top: 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+}
+
+input {
+  max-width: 300px;
+  width: 100%;
+  padding: 8px;
+  font-size: 14px;
+  border: 1px solid black;
+  border-radius: 10px;
+  outline: none;
+  transition: box-shadow 0.2s ease-in-out;
+}
+
+input:hover,
+input:focus {
+  box-shadow: 0 0 5px rgba(255, 255, 0, 0.75);
+}
+
+.account_info a {
+  font-size: 14px;
+  color: white;
+  transition: 0.2s ease-in-out;
+}
+
+.account_info a:hover,
+.account_info a:focus {
+  color: yellow;
+}
+
+.btn {
+  width: max-content;
+  background: yellow;
+  padding: 20px;
+  font-size: 20px;
+  border: 1px solid black;
+  border-radius: 10px;
+  margin-top: 15px;
+  cursor: pointer;
+  transition: box-shadow 0.2s ease-in-out;
+}
+
+.btn:hover,
+.btn:focus {
+  box-shadow: 0 0 10px rgba(255, 255, 0, 0.75);
+}
+
+.error {
+  display: none;
+  color: red;
+  font-size: 14px;
+  margin-top: 2px;
+}
+
+.error.active {
+  display: inline;
+}

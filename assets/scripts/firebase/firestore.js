@@ -6,12 +6,16 @@ import {
   getDoc,
   getDocs,
   setDoc,
+  updateDoc,
   query,
   where,
+  orderBy,
+  limit,
 } from 'https://www.gstatic.com/firebasejs/9.15.0/firebase-firestore.js';
 import { auth } from './auth.js';
 
 const db = getFirestore(app);
+const col = collection(db, 'rank');
 
 export function getDocRef() {
   const documentId = auth.currentUser.uid;
@@ -23,6 +27,13 @@ export async function getDocUser() {
   return docSnap.data();
 }
 
+export async function getRank() {
+  const q = query(col, orderBy('counter'), limit(10));
+  const docSnap = await getDocs(q);
+
+  return docSnap;
+}
+
 export async function setDocValues(properties) {
   try {
     await setDoc(getDocRef(), properties);
@@ -31,9 +42,13 @@ export async function setDocValues(properties) {
   }
 }
 
+export async function updateDocValues(properties) {
+  await updateDoc(getDocRef(), properties);
+}
+
 export async function validateUser(username, password) {
   const q = query(
-    collection(db, 'rank'),
+    col,
     where('nickname', '==', username),
     where('password', '==', password),
   );

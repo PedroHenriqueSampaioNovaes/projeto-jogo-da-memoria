@@ -36,10 +36,10 @@ export async function loginAccount(email, password) {
   }
 }
 
-export function checkUserState(callback) {
+export function checkUserState(callback, ...args) {
   onAuthStateChanged(auth, (user) => {
     if (user) {
-      callback();
+      callback(...args);
     }
   });
 }

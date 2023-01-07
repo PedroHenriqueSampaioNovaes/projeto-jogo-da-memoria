@@ -6,55 +6,79 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-  <link rel="stylesheet" href="assets/styles/style.css">
+  <link rel="stylesheet" href="assets/styles/game.css">
+  <link rel="stylesheet" href="assets/styles/enterGame.css">
 
   <title>Jogo da Memória</title>
 </head>
 
 <body>
 
-  <div id="register">
-    <form id="form_register">
+  <div id="register" class="account_info show">
+    <h1 class="title">Crie sua Conta</h1>
+    <form id="form_register" class="form">
       <input type="text" id="nickname" placeholder="Digite seu nickname" required>
       <input type="email" id="email" placeholder="Digite seu email" required>
       <input type="password" id="password" placeholder="Digite sua senha" required>
-      <button>Cadastrar</button>
+      <span class="error"></span>
+      <a href="login">Já possui uma conta? Clique aqui</a>
+      <button class="btn">Cadastrar</button>
     </form>
-    <span id="error"></span>
   </div>
 
-  <div id="login">
-    <form id="form_login">
+  <div id="login" class="account_info">
+    <h1 class="title">Entre em sua Conta</h1>
+    <form id="form_login" class="form">
       <input type="text" id="nickname_login" placeholder="Digite seu nickname" required>
       <input type="password" id="password_login" placeholder="Digite sua senha" required>
-      <button>Entrar</button>
+      <span class="error"></span>
+      <a href="register">Não tem uma conta? Clique aqui</a>
+      <button class="btn">Entrar</button>
     </form>
-    <span id="error"></span>
   </div>
 
   <div id="game">
-    <div id="user">
+    <div id="details">
       <p>Nome: <span id="name">---</span></p>
-      <span>Tempo decorrido: 00</span>
+      <p>Tempo decorrido: <span id="timer">0</span>s</p>
     </div>
-    <div id="gameBoard">
-      <!-- <div id="09348230" class="card" data-icon="bootstrap">
-        <div class="card_front">
-          <img src="assets/images/bootstrap.png" alt="bootstrap">
-        </div>
-        <div class="card_back">
-          &lt;/&gt;
-        </div>
-      </div> -->
+
+    <div id="container">
+      <div id="game_board">
+        <!-- <div id="09348230" class="card" data-icon="bootstrap">
+            <div class="card_front">
+              <img src="assets/images/bootstrap.png" alt="bootstrap">
+            </div>
+            <div class="card_back">
+              &lt;/&gt;
+            </div>
+          </div> -->
+      </div>
+      <div id="rank">
+        <table id="table">
+          <thead>
+            <tr>
+              <th>Colocação</th>
+              <th>Nome</th>
+              <th>Tempo</th>
+            </tr>
+          </thead>
+          <tbody id="tbody">
+          </tbody>
+        </table>
+      </div>
     </div>
   </div>
 
-  <div id="gameOver">
+
+
+  <div id="game_over" class="bg">
     <p>Parabéns, você completou o jogo!</p>
-    <button id="restart">Jogue Novamente</button>
+    <button id="restart" class="btn">Jogue Novamente</button>
   </div>
 
   <script type="module" src="assets/scripts/script.js"></script>
+
 </body>
 
 </html>

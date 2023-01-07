@@ -15,7 +15,25 @@ body {
   background-color: #c7cdd3;
 }
 
-#gameBoard {
+#container {
+  display: flex;
+  gap: 200px;
+}
+
+#details {
+  border: 1px solid #05c3ff;
+  border-radius: 20px;
+  max-width: 700px;
+  margin: 0 auto;
+  padding: 20px;
+  background: #ededed;
+  color: black;
+  display: flex;
+  justify-content: space-around;
+  margin-bottom: 20px;
+}
+
+#game_board {
   max-width: 700px;
   display: grid;
   grid-template: repeat(5, 1fr) / repeat(4, 1fr);
@@ -59,9 +77,45 @@ body {
   color: #101c2c;
 }
 
-#gameOver {
+#rank {
+  align-self: start;
+  background: #ededed;
+  color: black;
+  padding: 20px;
+  border: 1px solid #05c3ff;
+  border-radius: 10px;
+}
+
+#table {
+  border-collapse: collapse;
+}
+
+thead tr {
+  border-bottom: 1px solid black;
+}
+
+thead th {
+  padding-bottom: 5px;
+}
+
+tbody td {
+  padding: 2px 15px;
+}
+
+tbody td:first-child {
+  text-align: center;
+}
+
+tbody td:nth-child(2) {
+  max-width: 150px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+#game_over {
   background-color: rgba(0, 0, 0, 0.9);
-  position: absolute;
+  position: fixed;
   top: 0;
   left: 0;
   width: 100%;
@@ -74,14 +128,26 @@ body {
   font-size: 50px;
 }
 
-#restart {
-  background: yellow;
-  padding: 20px;
-  font-size: 20px;
-  border: none;
-  border-radius: 10px;
-  margin-top: 10px;
-  cursor: pointer;
+@media (max-width: 1130px) {
+  #container {
+    flex-direction: column;
+    align-items: center;
+    gap: 60px;
+  }
+
+  #rank {
+    align-self: auto;
+    max-width: 350px;
+    width: 100%;
+  }
+
+  #table {
+    width: 100%;
+  }
+
+  tbody td {
+    text-align: center;
+  }
 }
 
 @media (max-width: 680px) {
