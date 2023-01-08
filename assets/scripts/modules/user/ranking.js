@@ -1,6 +1,6 @@
 import { getRank } from '../../firebase/firestore.js';
 
-export async function attRank() {
+export async function updateRank() {
   const rankView = document.querySelector('#tbody');
   const ranking = await getRank();
 
@@ -9,13 +9,12 @@ export async function attRank() {
     const nickName = doc.data().nickname;
     const counter = doc.data().counter;
     const childExists = rankView.children[placing];
+
+    if (counter === 0) return;
+
     placing++;
 
-    if (counter === 0) {
-      placing--;
-      return;
-    }
-
+    // Se já existir um elemento com o valor do placing atual, apenas atualiza o valor desse filho para não duplica-lo no rank
     if (childExists) {
       childExists.innerHTML = `<tr><td>${placing}</td> <td>${nickName}</td> <td>${counter}</td></tr>`;
     } else {
@@ -23,4 +22,4 @@ export async function attRank() {
     }
   });
 }
-attRank();
+updateRank();

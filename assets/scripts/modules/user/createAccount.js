@@ -23,7 +23,6 @@ async function createUser(event) {
       email: email.value,
       nickname: nickname.value,
       password: password.value,
-      counter: 0,
     });
 
     const register = document.querySelector('#register');

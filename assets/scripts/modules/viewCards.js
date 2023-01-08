@@ -1,6 +1,6 @@
 import { checkUserState } from '../firebase/auth.js';
-import { updateDocValues } from '../firebase/firestore.js';
-import { attRank } from './user/ranking.js';
+import { canUpdateData } from '../firebase/firestore.js';
+import { updateRank } from './user/ranking.js';
 import Game from './game.js';
 const game = new Game();
 
@@ -67,7 +67,7 @@ function flipCard() {
         if (game.checkGameOver()) {
           setTimeout(() => {
             clearInterval(timerInterval);
-            attDataBase();
+            updateDataBase();
 
             const gameOver = document.querySelector('#game_over');
             gameOver.style.display = 'flex';
@@ -94,6 +94,7 @@ function restart() {
   timer = 0;
   game.clearCards();
   startGame();
+  initTimer();
 
   const gameOver = document.querySelector('#game_over');
   gameOver.style.display = 'none';
@@ -109,7 +110,7 @@ function initTimer() {
   }, 1000);
 }
 
-async function attDataBase() {
-  await updateDocValues({ counter: timer });
-  await attRank();
+async function updateDataBase() {
+  await canUpdateData(timer);
+  await updateRank();
 }

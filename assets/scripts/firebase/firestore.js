@@ -34,6 +34,14 @@ export async function getRank() {
   return docSnap;
 }
 
+export async function updateCounterRank(value) {
+  const docSnap = await getDoc(getDocRef());
+  const counter = docSnap.data().counter;
+
+  if (value >= counter) return false;
+  return true;
+}
+
 export async function setDocValues(properties) {
   try {
     await setDoc(getDocRef(), properties);
@@ -44,6 +52,12 @@ export async function setDocValues(properties) {
 
 export async function updateDocValues(properties) {
   await updateDoc(getDocRef(), properties);
+}
+
+export async function canUpdateData(timer) {
+  if (await updateCounterRank(timer)) {
+    await updateDocValues({ counter: timer });
+  }
 }
 
 export async function validateUser(username, password) {
